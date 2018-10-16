@@ -9,7 +9,7 @@
 
           - name: attaching system for the satellite pool
             shell: |
-                    pool=$(subscription-manager list --available --matches='*Satellite Beta' | awk '/Pool ID/ {print $3}' | head -n 1)
+                    pool=$(subscription-manager list --available --matches='*Satellite Beta' | awk '/(Pool ID)|(ID de grupo)/ {print $NF}' | head -n 1)
                     subscription-manager attach --pool=$pool
             tags:
                     - "attach"
