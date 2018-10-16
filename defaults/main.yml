@@ -1,0 +1,11 @@
+---
+# main vars
+#
+
+satellite_hostname: "hostname"
+satellite_username: "satellite-admin"
+satellite_password: "password"
+satellite_initial_location: "initial-location"
+satellite_initial_organization: "initial-organization"
+satellite_dhcp_managed: "false"
+satellite_dns_managed: "false"

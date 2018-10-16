@@ -1,0 +1,24 @@
+---
+#task for setup the firewall ports and services
+#
+
+          - name: including firewall ports
+            include_vars: vars/vfirewall.yml
+
+          - name: opening firewall ports
+            become: true
+            firewalld:
+                    permanent: true
+                    immediate: true
+                    port: "{{ item }}"
+                    state: enabled
+            loop: "{{ list_of_ports }}"
+
+          - name: ading services
+            become: true
+            firewalld:
+                    permanent: true
+                    immediate: true
+                    service: "{{ item }}"
+                    state: enabled
+            loop: "{{ list_of_services }}"

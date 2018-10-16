@@ -1,0 +1,7 @@
+---
+# tasks file for roles/satellite_6.4_beta
+#
+- import_tasks: etc-hosts.yml
+- import_tasks: firewall.yml
+- import_tasks: registration.yml
+- import_tasks: install-satellite.yml

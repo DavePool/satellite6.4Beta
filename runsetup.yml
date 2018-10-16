@@ -1,0 +1,18 @@
+---
+- hosts: satellite
+
+  vars_prompt:
+          - name: "rhn"
+            prompt: "Enter the rhn user "
+            private: no
+          - name: "password"
+            prompt: "Enter your password "
+            private: yes
+          - name: "ip"
+            prompt: "Enter your ip"
+            private: no
+          - name: "fqdn"
+            prompt: "Enter your FQDN"
+            private: no
+  roles:
+          - satellite_6.4_beta

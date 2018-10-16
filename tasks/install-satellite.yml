@@ -1,0 +1,55 @@
+---
+
+          - name: yum upgrade
+            yum:
+                    name: "*"
+                    state: latest
+            async: 3600
+            poll: 0
+            register: yum_state
+           
+          - debug: 
+               msg="on update"
+          - async_status:
+              jid: "{{ yum_state.ansible_job_id }}"
+            register: yum
+            until: yum.finished
+            retries: 300
+            ignore_errors: true      
+            tags:
+                    - upgrade
+
+
+          - name: download satelite from network
+            yum:
+                    name: satellite
+                    state: installed
+
+            async: 3600
+            poll: 0
+            register: download_state
+           
+          - debug: 
+               msg="Downloading..."
+          - async_status:
+              jid: "{{ download_state.ansible_job_id }}"
+            register: download
+            until: download.finished
+            retries: 600
+            tags: 
+                    - download
+                    
+          - name: copy the answers file to /etc/foreman-installer/scenarios.d
+            template:
+                    src: "satellite-answers.yaml"
+                    dest: "/etc/foreman-installer/scenarios.d/satellite-answers.yaml"
+            tags:
+                    - copy
+
+          - name: install satellite     
+            command: "/usr/sbin/satellite-installer --scenario satellite"
+
+            async: 4600
+            poll: 5
+            tags: 
+                    - installSatellite

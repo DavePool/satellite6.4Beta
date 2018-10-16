@@ -1,0 +1,37 @@
+---
+          - name: registering system
+            redhat_subscription:
+                    state: present
+                    username: "{{ rhn }}"
+                    password: "{{ password }}"
+            tags: 
+              - "register"
+
+          - name: attaching system for the satellite pool
+            shell: |
+                    pool=$(subscription-manager list --available --matches='*Satellite Beta' | awk '/Pool ID/ {print $3}' | head -n 1)
+                    subscription-manager attach --pool=$pool
+            tags:
+                    - "attach"
+
+          - name: Disable all RHSM repos
+            rhsm_repository:
+                    name: '*'
+                    state: disabled
+
+            tags:
+                    - "disable"
+
+          - name: including the satellite beta repos
+            include_vars: vars/vrepos.yml
+            tags:
+                    - "enable"
+
+          - name: Enable the satellite beta repos
+            rhsm_repository:
+                    name: "{{ item }}"
+                    state: enabled
+            loop: "{{ list_of_repos }}"
+            tags:
+                    - "enable"
+
