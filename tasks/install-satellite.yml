@@ -1,5 +1,7 @@
 ---
-
+          - name: yum clan all
+            command: yum clean all
+            
           - name: yum upgrade
             yum:
                     name: "*"
