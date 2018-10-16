@@ -1,17 +1,40 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Install Red Hat Satellite Beta 6.4 
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+for the instalation the system requires:
+
+4-core 2.0 GHz CPU at a minimum
+A minimum of 20 GB memory is required for the Satellite Server to function
+8Gb of memory ram as minimum
+8Gb of swap
+***important***
+Ensure that storage is available on the /var file system to prevent storage problems
 
 Role Variables
 --------------
+please provide this variables in your inventory
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+[satellite]
+192.168.4.16
+# Ex 2: A collection of hosts belonging to the 'webservers' group
+[satellite:vars]
+satellite_initial_organization= "initial-organization"
+satellite_initial_location= "initial-location"
+satellite_username= "the-admin-user"
+satellite_password= "the-password-of-the-admin-page"
+satellite_dhcp_managed= false
+satellite_dns_managed= false
+
+
+this role install satellite acording of the basic instalation
+
+To view all of the configurable options, enter the satellite-installer --scenario
+satellite --help command
 
 Dependencies
 ------------
@@ -20,12 +43,7 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+one you provide the vars in your inventory, run the runsetup.yml the role will ask you for rhn user & password
 
 License
 -------
