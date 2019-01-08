@@ -21,7 +21,7 @@ please provide this variables in your inventory
 
 [satellite]
 192.168.4.16
-# Ex 2: A collection of hosts belonging to the 'webservers' group
+
 [satellite:vars]
 satellite_initial_organization= "initial-organization"
 satellite_initial_location= "initial-location"
