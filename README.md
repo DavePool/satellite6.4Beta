@@ -19,7 +19,8 @@ Role Variables
 --------------
 please provide this variables in your inventory
 
-[satellite]&nbsp;
+[satellite]
+&nbsp;
 192.168.4.16
 
 [satellite:vars]
