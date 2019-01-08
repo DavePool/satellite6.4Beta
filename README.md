@@ -21,16 +21,18 @@ please provide this variables in your inventory
 
 [satellite]
 </br>
-192.168.4.16
+xxx.xxx.xxx.xxx
 
 [satellite:vars]
-satellite_initial_organization= "initial-organization"
-satellite_initial_location= "initial-location"
-satellite_username= "the-admin-user"
-satellite_password= "the-password-of-the-admin-page"
-satellite_dhcp_managed= false
-satellite_dns_managed= false
-
+</br>
+satellite_initial_organization= "initial-organization"</br>
+satellite_initial_location= "initial-location"</br>
+satellite_username= "the-admin-user"</br>
+satellite_password= "the-password-of-the-admin-page"</br>
+satellite_dhcp_managed= false</br>
+satellite_dns_managed= false</br>
+satellite_ip= "ip-address"</br>
+satellite_fqdn= "fqdn-for-satellite"</br>
 
 this role install satellite acording of the basic instalation
 
